@@ -120,23 +120,28 @@ public class AI : MonoBehaviour
 
 	public void Turn()
 	{
-		Vector3 tankDir = front.transform.position - transform.position;
+		//Vector3 tankDir = front.transform.position - transform.position;
 
-		Vector3 moveDir;
+		//Vector3 moveDir;
 
-		if (!moving)
-			moveDir = target.transform.position - transform.position;
-		else
-			moveDir = destination - transform.position;
+		//if (!moving)
+		//	moveDir = target.transform.position - transform.position;
+		//else
+		//	moveDir = destination - transform.position;
 
-		if ((Vector3.Angle(tankDir, moveDir)) > 20)
-		{
-			float turn = 0.5f * m_TurnSpeed * Time.deltaTime;
+		//if ((Vector3.Angle(tankDir, moveDir)) > 20)
+		//{
+		//	float turn = 0.5f * m_TurnSpeed * Time.deltaTime;
 
-			Quaternion turnRotation = Quaternion.Euler(0f, turn, 0f);
+		//	Quaternion turnRotation = Quaternion.Euler(0f, turn, 0f);
 
-			m_Rigidbody.MoveRotation(m_Rigidbody.rotation * turnRotation);
-		}
+		//	m_Rigidbody.MoveRotation(m_Rigidbody.rotation * turnRotation);
+		//}
+
+		//Vector3 rotation = moving ? destination - transform.position : target.transform.position - transform.position;
+
+		//transform.rotation = Quaternion.FromToRotation(Vector3.back, rotation);
+
 	}
 
 	public void Damage(float damage)

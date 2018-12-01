@@ -88,7 +88,7 @@
      <Compile Include="Assets\SampleScenes\Scripts\PlaceTargetWithMouse.cs" />
      <Compile Include="Assets\SampleScenes\Scripts\SlowMoButton.cs" />
      <Compile Include="Assets\Scripts\Gravity.cs" />
-     <Compile Include="Assets\Scripts\Joystick.cs" />
+     <Compile Include="Assets\Scripts\MyJoystick.cs" />
      <Compile Include="Assets\Scripts\Tanks\AI.cs" />
      <Compile Include="Assets\Scripts\Tanks\AStar\GridComponent.cs" />
      <Compile Include="Assets\Scripts\Tanks\AStar\Node.cs" />

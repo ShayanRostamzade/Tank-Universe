@@ -2,9 +2,9 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
+public class MyJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
 {
-	public Image background;
+	private Image background;
 	private Image joystick;
 	private Vector3 position;
 	private float R;
@@ -13,24 +13,25 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
 	private void Awake()
 	{
 		R = 6;
+		background = GetComponent<Image>();
 		joystick = background.transform.GetChild(0).GetComponent<Image>();
-		background.gameObject.SetActive(false);
+		//background.gameObject.SetActive(false);
 	}
 
 	public void OnPointerDown(PointerEventData eventData)
 	{
-		background.gameObject.SetActive(true);
+		//background.gameObject.SetActive(true);
 
-		Vector3 pos = Camera.main.ScreenToWorldPoint(new Vector3(eventData.position.x, eventData.position.y,
-																 100));
+		//Vector3 pos = Camera.main.ScreenToWorldPoint(new Vector3(eventData.position.x, eventData.position.y,
+		//														 100));
 
-		print(Vector3.Distance(eventData.position, Camera.main.transform.position));
+		//print(Vector3.Distance(eventData.position, Camera.main.transform.position));
 
-		background.GetComponent<Image>().rectTransform.position = pos;
+		//background.GetComponent<Image>().rectTransform.position = pos;
 		//new Vector3(pos.x, pos.y, 0);
 		//-Camera.main.transform.position.z);
 
-		//OnDrag(eventData);
+		OnDrag(eventData);
 	}
 
 	public void OnDrag(PointerEventData eventData)
@@ -61,7 +62,7 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
 	{
 		position = Vector3.zero;
 		joystick.rectTransform.anchoredPosition = Vector3.zero;
-		background.gameObject.SetActive(false);
+		//background.gameObject.SetActive(false);
 	}
 
 	public Vector3 Coordinates()

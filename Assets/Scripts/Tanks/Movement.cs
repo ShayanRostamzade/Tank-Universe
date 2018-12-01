@@ -1,10 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityStandardAssets.CrossPlatformInput;
 
-public class Movement : MonoBehaviour
+public class Movement : Tank
 {
+
+	public MyJoystick joystick;
 
 	private float m_HorizontalInput;
 	private float m_VerticalInput;
@@ -18,7 +18,6 @@ public class Movement : MonoBehaviour
 	private Rigidbody rb;
 
 	private enum State { Idealing, Moving }
-
 	State state;
 
 
@@ -27,14 +26,17 @@ public class Movement : MonoBehaviour
 		rb = GetComponent<Rigidbody>();
 		m_AudioSource = GetComponent<AudioSource>();
 		state = State.Idealing;
+		//transform.rotation.eulerAngles.Set(Mathf.Atan2(transform.position.y, transform.position.z),
+		//								   Mathf.Atan2(transform.position.x, transform.position.z),
+		//								   Mathf.Atan2(transform.position.x, transform.position.y));
 	}
 
 
 	private void Update()
 	{
-		m_HorizontalInput = CrossPlatformInputManager.GetAxis("Horizontal");
-		m_VerticalInput = CrossPlatformInputManager.GetAxis("Vertical");
-		EngineSound();
+		m_HorizontalInput = joystick.Coordinates().x;
+		m_VerticalInput = joystick.Coordinates().z;
+		//EngineSound();
 	}
 
 	private void FixedUpdate()
@@ -43,19 +45,24 @@ public class Movement : MonoBehaviour
 		Turn();
 	}
 
-	private void Move()
+	public void Move()
 	{
 		state = State.Moving;
-		Vector3 movement = transform.forward * m_VerticalInput * m_MoveSpeed * Time.deltaTime;
+		Vector3 movement = transform.forward * m_VerticalInput * m_MoveSpeed * Time.fixedDeltaTime;
 		rb.MovePosition(rb.position + movement);
 	}
 
-	private void Turn()
+	public void Turn()
 	{
 		state = State.Moving;
 		float turn = m_HorizontalInput * m_TurnSpeed * Time.deltaTime;
 		Quaternion turnRotation = Quaternion.Euler(0f, turn, 0f);
 		rb.MoveRotation(rb.rotation * turnRotation);
+	}
+
+	public void Damage(float damage)
+	{
+		throw new System.NotImplementedException();
 	}
 
 	private void EngineSound()
@@ -72,7 +79,5 @@ public class Movement : MonoBehaviour
 		{
 			m_AudioSource.Stop();
 		}
-
-
 	}
 }

@@ -35,12 +35,12 @@ public class Gravity : MonoBehaviour
 		//	Attract(tankMovement.gameObject);
 		//}
 		Movement[] movements = FindObjectsOfType<Movement>();
-		AI[] ais = FindObjectsOfType<AI>();
+		//AI[] ais = FindObjectsOfType<AI>();
 
-		foreach (AI ai in ais)
-		{
-			Attract(ai.gameObject);
-		}
+		//foreach (AI ai in ais)
+		//{
+		//	Attract(ai.gameObject);
+		//}
 
 		foreach (Movement m in movements)
 		{
